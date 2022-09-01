@@ -9,3 +9,7 @@ export const listarProductos = (req, res)=>{
 export const obtenerProducto = (req, res)=>{
     res.send('Aqui envio un objeto producto')
 }
+
+// agregar las funciones para borrarProducto
+
+// agregar las funciones para editarProducto
