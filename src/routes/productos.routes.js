@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import { crearProducto, listarProductos, obtenerProducto } from '../controllers/productos.controllers';
+import { borrarProducto, crearProducto, editarProducto, listarProductos, obtenerProducto } from '../controllers/productos.controllers';
 
 const router = Router();
 
@@ -7,7 +7,7 @@ const router = Router();
 // dominio+ /apicafe + /productos
 router.route('/productos').get(listarProductos).post(crearProducto);
 
-router.route('/productos/:id').get(obtenerProducto).put().delete()
+router.route('/productos/:id').get(obtenerProducto).put(editarProducto).delete(borrarProducto)
 
 
 export default router;
