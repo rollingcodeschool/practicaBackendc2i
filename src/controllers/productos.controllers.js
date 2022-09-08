@@ -57,8 +57,19 @@ export const obtenerProducto = async (req, res)=>{
     }
 
 }
-export const borrarProducto = (req, res)=>{
-    res.send('Aqui borro un producto')
+export const borrarProducto = async(req, res)=>{
+   try{
+    //buscar un producto por el id en la collection de productos de la BD y luego borrar
+    await Producto.findByIdAndDelete(req.params.id);
+    res.status(200).json({
+        mensaje: 'El producto fue eliminado correctamente'
+    })
+   }catch(error){
+    console.log(error);
+    res.status(400).json({
+        mensaje:'Error al intentar borrar el producto'
+    })
+   }
 }
 export const editarProducto = (req, res)=>{
     res.send('Aqui edito un producto')
