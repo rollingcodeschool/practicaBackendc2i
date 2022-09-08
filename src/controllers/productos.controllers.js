@@ -71,8 +71,20 @@ export const borrarProducto = async(req, res)=>{
     })
    }
 }
-export const editarProducto = (req, res)=>{
-    res.send('Aqui edito un producto')
+export const editarProducto = async(req, res)=>{
+   try {
+    //validacion
+    //buscar el producto por el id y luego modificar el producto
+    await Producto.findByIdAndUpdate(req.params.id, req.body);
+    res.status(200).json({
+        mensaje: 'El producto modificado'
+    })
+} catch (error) {
+    console.log(error);
+    res.status(400).json({
+        mensaje:'Error al intentar borrar el producto'
+    })
+   }
 }
 
 // agregar las funciones para borrarProducto
