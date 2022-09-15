@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import './src/database'
 import router from './src/routes/productos.routes'
+import path from 'path';
 
 // const express = require('express');
 
@@ -23,8 +24,9 @@ app.use(cors()); //permite recibir peticiones remotas
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 //cargar un archivo estatico
-app.use(express.static('./public'));
-
+// app.use(express.static('./public'));
+app.use(express.static(path.join(__dirname,'public')));
+// console.log(path.join(__dirname,'public'))
 
 //rutas
 app.use('/apicafe',router )
