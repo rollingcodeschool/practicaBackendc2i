@@ -2,6 +2,7 @@
   "name": "cafeteria-backend",
   "version": "1.0.0",
   "main": "index.js",
+  "engines": {"node":"16.x"},
   "scripts": {
     "start": "babel-node index.js",
     "dev": "nodemon --exec babel-node index.js"
