@@ -1,4 +1,5 @@
-import Usuario from '../models/usuario'
+import Usuario from '../models/usuario';
+import bcrypt from 'bcryptjs';
 
 export const login = (req, res)=>{
     res.send('usuario logueado...')
@@ -16,11 +17,14 @@ export const crearUsuario = async(req,res)=>{
                 mensaje: 'ya existe un usuario con el correo enviado'
             })
         }
-
-        //encriptar la contraseña
+        
         //generar el token
         //guardamos el nuevo usuario en la BD
         usuario = new Usuario(req.body)
+        //encriptar la contraseña
+        const salt = bcrypt.genSaltSync();
+        usuario.password = bcrypt.hashSync(password, salt)
+
         await usuario.save();
         res.status(201).json({
             mensaje: 'usuario creado',
