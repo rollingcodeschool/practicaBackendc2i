@@ -2,7 +2,22 @@ import Usuario from '../models/usuario';
 import bcrypt from 'bcryptjs';
 
 export const login = (req, res)=>{
-    res.send('usuario logueado...')
+    try {
+        //1 verificar si existe un mail como el recibido
+
+
+        //confirmar si el password es valido
+
+        //responder que el usuario es correcto
+
+
+
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({
+            mensaje: 'usuario o contraseña invalido'
+        })
+    }
 }
 
 export const crearUsuario = async(req,res)=>{
