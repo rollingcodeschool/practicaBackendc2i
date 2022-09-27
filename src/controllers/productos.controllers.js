@@ -85,7 +85,3 @@ export const editarProducto = async(req, res)=>{
     })
    }
 }
-
-// agregar las funciones para borrarProducto
-
-// agregar las funciones para editarProducto

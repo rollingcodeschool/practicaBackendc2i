@@ -1,10 +1,36 @@
-import {Router} from 'express';
-import { crearUsuario, login } from '../controllers/usuarios.controllers';
+import { Router } from "express";
+import { check } from "express-validator";
+import { crearUsuario, login } from "../controllers/usuarios.controllers";
+import resultadosValidacion from "../helpers/resultadoValidacion";
 
 const router = Router();
 
 //agregar las validaciones con express-validator
-router.route('/').post(login);
-router.route('/nuevo').post(crearUsuario);
+router
+  .route("/")
+  .post(
+    [
+      check("email", "El email es obligatorio").isEmail(),
+      check(
+        "password",
+        "El password debe contener 6 caracteres como minimo"
+      ).isLength({ min: 6 }),
+      resultadosValidacion,
+    ],
+    login
+  );
+router
+  .route("/nuevo")
+  .post(
+    [
+      check("nombre", "El nombre es obligatorio").not().isEmpty(),
+      check("email", "El email es obligatorio").isEmail(),
+      check("password", "El password debe de ser de 6 caracteres").isLength({
+        min: 6,
+      }),
+      resultadosValidacion,
+    ],
+    crearUsuario
+  );
 
 export default router;
