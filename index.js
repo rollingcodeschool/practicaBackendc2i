@@ -2,8 +2,10 @@ import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import './src/database'
-import router from './src/routes/productos.routes'
+import router from './src/routes/productos.routes';
+import auth from './src/routes/usuarios.routes';
 import path from 'path';
+import * as dotenv from 'dotenv';
 
 // const express = require('express');
 
@@ -18,6 +20,7 @@ app.listen(app.get('port'), ()=>{
     console.log('Estamos en el puerto '+ app.get('port'))
 })
 //middlewares
+dotenv.config();
 app.use(morgan('dev')); //da informacion en la terminal
 app.use(cors()); //permite recibir peticiones remotas
 //los dos middlewares que siguen sirven para procesar un objeto json
@@ -29,4 +32,5 @@ app.use(express.static(path.join(__dirname,'public')));
 // console.log(path.join(__dirname,'public'))
 
 //rutas
-app.use('/apicafe',router )
+app.use('/apicafe',router );
+app.use('/apicafe/auth', auth)
